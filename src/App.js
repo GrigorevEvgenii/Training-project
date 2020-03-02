@@ -6,14 +6,20 @@ import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route} from "react-router-dom"
 
-const App = () => {
+const App = (props) => {
+  const ProfileWrapper = (p) => {
+    return (
+      <Profile posts={p.posts} />
+    );
+  }
+  
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route component={Profile} path="/Profile" />
+          <Route component={ProfileWrapper} path="/Profile" />
           <Route component={Dialogs} path="/Dialogs"/>
         </div>
       </div>
