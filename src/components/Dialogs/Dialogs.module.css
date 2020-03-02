@@ -1,0 +1,19 @@
+.Dialogs {
+  display: grid;
+  grid-template-columns: 1fr 2fr; 
+
+  background-color: #BFF96E;
+
+  padding: 20px;
+}
+
+.DialogsItems {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.Messages {
+  border: 1px solid black;
+
+  padding: 5px;
+}
