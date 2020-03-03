@@ -4,16 +4,16 @@ import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {MessagesItem} from "./MessagesItem/MessagesItem";
 
 const Dialogs = (props) => {
+    const dialogsElements = props.state.dialogs.map((dialog) => <DialogsItem name={dialog.name} id={dialog.id} />);
+    const messagesElements = props.state.messages.map((message) => <MessagesItem id={message.id} message={message.message}/>);
+
     return (
         <div className={s.Dialogs}>
             <div className={s.DialogsItems}>
-                <DialogsItem name="Vasya" id={1} />
-                <DialogsItem name="Ivan" id={2} />
-                <DialogsItem name="Sergey" id={3} />
+                { dialogsElements }
             </div>
             <div className={s.Messages}>
-                <MessagesItem message="LoL" />
-                <MessagesItem message="What are you doing" />
+                { messagesElements }
             </div>
         </div>
     );
