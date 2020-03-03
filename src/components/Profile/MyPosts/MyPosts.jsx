@@ -8,12 +8,13 @@ export const MyPosts = (props) => {
   let ref = React.createRef();
   
   const newPostHandler = () => {
-    props.addPost(ref.current.value);
-    ref.current.value="";
+    debugger;
+    props.addPost();
   }
   
   const newText = () => {
-    props.newText(ref .current.value);
+    debugger;
+    props.newText(ref.current.value);
   }
 
   return (

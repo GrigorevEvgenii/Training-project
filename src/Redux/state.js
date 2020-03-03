@@ -31,20 +31,19 @@ export const state = {
       }
 }
 
-export const addPost = (text) => {
+export const addPost = () => {
     let tmp = {
         id: state.profilePage.posts.length + 1,
-        text: text,
-        likesCount: 0,
+        text: state.profilePage.currentText,
+        likesCount: state.profilePage.posts.length + 1,
     }
-
     state.profilePage.posts.push(tmp);
-
+    state.profilePage.currentText = "";
+    debugger;
     render(state);
 }
 
 export const newText = (text) => {
-    state.currentText= text;
-    state.currentText = "";
+    state.profilePage.currentText= text;
     render(state);
 }
