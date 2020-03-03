@@ -1,12 +1,14 @@
 export const state = {
-    posts: [
-        {id: 1, text: 'Hi, how are you?', likesCount: 12},
-        {id: 2, text: 'It\'s my first post', likesCount: 11},
-        {id: 3, text: 'Blabla', likesCount: 11},
-        {id: 4, text: 'Dada', likesCount: 11}
-      ],
+    profilePage: {
+        posts: [
+            {id: 1, text: 'Hi, how are you?', likesCount: 12},
+            {id: 2, text: 'It\'s my first post', likesCount: 11},
+            {id: 3, text: 'Blabla', likesCount: 11},
+            {id: 4, text: 'Dada', likesCount: 11}
+        ],
+    },
     
-      dialogsPage: {
+    dialogsPage: {
         dialogs: [
             {id: 1, name: 'Dimych'},
             {id: 2, name: 'Andrew'},
