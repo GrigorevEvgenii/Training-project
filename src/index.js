@@ -5,7 +5,7 @@ import {store} from "./Redux/state";
 import App from "./App";
 
 export const render = (state) => {
-    ReactDOM.render(<App state={state} addPost={store.addPost.bind(store)} newText={store.newText.bind(store)} />, document.getElementById('root'));
+    ReactDOM.render(<App state={state} dispatch={store.dispatch.bind(store)} />, document.getElementById('root'));
 }
 
 render(store.getState());

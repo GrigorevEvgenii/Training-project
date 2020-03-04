@@ -1,3 +1,6 @@
+const ADD_POST = "ADD_POST";
+const NEW_TEXT = "NEW_TEXT";
+
 export const store = {
     _state: {
         profilePage: {
@@ -30,6 +33,10 @@ export const store = {
           }
     },
     
+    _callSubscriber() {
+        console.log("state has been changed");
+    },
+    
     getState() {
         return this._state;
     },
@@ -45,16 +52,39 @@ export const store = {
         this._callSubscriber(this.getState());
     },
     
-    _callSubscriber() {
-        console.log("state has been changed");
-    },
-    
     newText(text) {
         this._state.profilePage.currentText= text;
         this._callSubscriber(this.getState());
     },
+
+    dispatch(action) {
+        switch(action.type) {
+            case ADD_POST: {
+                this.addPost();
+            }
+            case NEW_TEXT: {
+                this.newText(action.text);
+            }
+            default: {
+                console.log(action.type);
+            }
+        }
+    },
     
     subscribe(observer) {
         this._callSubscriber = observer;
+    }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST,
+    }
+}
+
+export const newTextActionCreator = (text) => {
+    return {
+        type: NEW_TEXT,
+        text: text,
     }
 }

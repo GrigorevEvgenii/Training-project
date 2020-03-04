@@ -3,3 +3,38 @@
 
     padding: 10px;
 }
+
+.title {
+    display: grid;
+    
+    grid-row-gap: 10px;
+
+    width: 100%;
+}
+
+.subtitle {
+    text-align: left;
+}
+
+.PostInputLabel {
+    text-align: center;
+}
+
+.PostInput {
+    width: 75%;
+    justify-self: center;
+}
+
+.AddPostBtn {
+    width: 75%;
+    justify-self: center;
+}
+
+.AddNewPostContainer {
+    width: 100%;
+
+    display: grid;
+    justify-self: center;
+
+    margin-top: 20px;
+}

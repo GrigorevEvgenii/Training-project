@@ -1,12 +1,12 @@
 .ProfileInfo {
+    padding: 10px;
+
     text-align: center;
 }
 
-.imgContainer {
-
-}
+.imgContainer {}
 
 .img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
