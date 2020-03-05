@@ -21,13 +21,14 @@ export const MyPosts = (props) => {
       <div className={s.title}>
         <span className={s.subtitle}>My posts:</span>
       </div>
-      
+
       {postsElements}
 
       <div className={s.AddNewPostContainer}>
         <label className={s.PostInputLabel}>
           New Post
-          <br /><textarea className={s.PostInput} onChange={newText} defaultValue={props.currentText} ref={ref} rows="4" />
+          <br />
+          <textarea className={s.PostInput} onChange={newText} defaultValue={props.currentText} ref={ref} rows="4" />
         </label>
         <button className={s.AddPostBtn} onClick={newPostHandler}>Добавить запись</button>
       </div>

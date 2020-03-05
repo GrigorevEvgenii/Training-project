@@ -1,5 +1,7 @@
 const ADD_POST = "ADD_POST";
 const NEW_TEXT = "NEW_TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 export const store = {
     _state: {
@@ -30,6 +32,8 @@ export const store = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
             ],
+
+            currentMessageBody: "",
           }
     },
     
@@ -42,12 +46,11 @@ export const store = {
     },
 
     addPost() {
-        let tmp = {
+        this._state.profilePage.posts = [...this._state.profilePage.posts, {
             id: this._state.profilePage.posts.length + 1,
             text: this._state.profilePage.currentText,
             likesCount: this._state.profilePage.posts.length + 1,
-        }
-        this._state.profilePage.posts.push(tmp);
+        }];
         this._state.profilePage.currentText = "";
         this._callSubscriber(this.getState());
     },
@@ -57,13 +60,38 @@ export const store = {
         this._callSubscriber(this.getState());
     },
 
+    sendMessage() {
+        this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, 
+            {
+                id: this._state.dialogsPage.messages.length + 1, 
+                message: this._state.dialogsPage.currentMessageBody
+            }];
+        this._state.dialogsPage.currentMessageBody = "";
+        this._callSubscriber(this.getState());
+    },
+
+    updateNewMessageText(text) {
+        this._state.dialogsPage.currentMessageBody = text;
+        this._callSubscriber(this.getState());
+    },
+
     dispatch(action) {
         switch(action.type) {
             case ADD_POST: {
                 this.addPost();
+                break;
             }
             case NEW_TEXT: {
                 this.newText(action.text);
+                break;
+            }
+            case UPDATE_NEW_MESSAGE_TEXT: {
+                this.updateNewMessageText(action.messageBody);
+                break;
+            }
+            case SEND_MESSAGE: {
+                this.sendMessage();
+                break;
             }
             default: {
                 console.log(action.type);
@@ -86,5 +114,18 @@ export const newTextActionCreator = (text) => {
     return {
         type: NEW_TEXT,
         text: text,
+    }
+}
+
+export const updateNewMessageTextCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        messageBody: text,
+    }
+}
+
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE,
     }
 }
