@@ -6,14 +6,12 @@ import {addPostActionCreator, newTextActionCreator} from "../../../Redux/profile
 export const MyPosts = (props) => {
   let postsElements = props.posts.map((item) => <Post text={item.text} likesCount={item.likesCount}/>);
   
-  let ref = React.createRef();
-  
   const newPostHandler = () => {
-    props.dispatch(addPostActionCreator());
+    props.newPostHandler();
   }
   
-  const newText = () => {
-    props.dispatch(newTextActionCreator(ref.current.value));
+  const newText = (event) => {
+    props.newText(event.target.value);
   }
 
   return (
@@ -28,7 +26,7 @@ export const MyPosts = (props) => {
         <label className={s.PostInputLabel}>
           New Post
           <br />
-          <textarea className={s.PostInput} onChange={newText} value={props.currentText} ref={ref} rows="4" />
+          <textarea className={s.PostInput} onChange={newText} value={props.currentText} rows="4" />
         </label>
         <button className={s.AddPostBtn} onClick={newPostHandler}>Добавить запись</button>
       </div>
