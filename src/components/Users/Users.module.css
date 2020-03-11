@@ -1,0 +1,62 @@
+.users {
+    background-color: #BFF96E;
+}
+
+.userContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 8fr;
+
+    padding: 10px 10px 10px 20px;
+}
+
+.aboutUserContainer {
+    display: grid;
+    grid-template-columns: 4fr 4fr;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 10px;
+}
+
+.userDescriptionContainer {
+    display: grid;
+}
+
+.locationContainer {
+    display: grid;
+    justify-self: right ;
+}
+
+.photoContainer {
+    display: grid;
+    justify-items: center;
+}
+
+.photo {
+    width: 75%;
+    height: auto;
+}
+
+.button {
+    width: 50%;
+
+    margin-top: 10px;
+}
+
+.userName {
+    align-self: start;
+}
+
+.userStatus {
+    align-self: end;
+}
+
+.userCountry {
+    align-self: start;
+}
+
+.userCity {
+    align-self: end;
+}
