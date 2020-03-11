@@ -8,7 +8,7 @@ const Profile = (props) => {
     <div className={s.Profile}>
       <ProfileInfo description="some text" url="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg" />
         <div>
-          <MyPostsContainer store={props.store} />
+          <MyPostsContainer />
         </div>
     </div>
   );

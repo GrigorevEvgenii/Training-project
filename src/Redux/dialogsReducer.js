@@ -1,3 +1,5 @@
+import {cloneDeep} from 'lodash';
+
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
 const SEND_MESSAGE = "SEND_MESSAGE";
 
@@ -24,21 +26,22 @@ const initialState = {
 const dialogsReducer = (state = initialState, action) => {
     switch(action.type) {
         case UPDATE_NEW_MESSAGE_TEXT: {
-            state.currentMessageBody = action.messageBody;
-            return state;
+            let newState = cloneDeep(state);
+            newState.currentMessageBody = action.messageBody;
+            return newState;
         }
         case SEND_MESSAGE: {
-            state.messages = [...state.messages, 
+            let newState = cloneDeep(state);
+            newState.messages = [...state.messages, 
                 {
                     id: state.messages.length + 1, 
                     message: state.currentMessageBody
                 }];
-            state.currentMessageBody = "";
-            return state;
+                newState.currentMessageBody = "";
+            return newState;
         }
         default: {
             return state;
-            console.log('pidor');
         }
     }
 }
