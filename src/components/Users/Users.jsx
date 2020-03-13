@@ -1,43 +1,19 @@
 import React from "react";
+import {useEffect} from "react";
 import s from "./Users.module.css";
-import defaultAvatar from "../../img/user.png"
+import defaultAvatar from "../../img/user.png";
 import * as axios from "axios";
 
 export const Users = (props) => {
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
-            props.setUsers(response.data.items);
-        });
+    useEffect(() => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                props.setUsers(response.data.items);
+            });
+        }
+    });
 
-        // props.setUsers([
-        //     {
-        //         id: 1,
-        //         photoUrl: 'https://vignette.wikia.nocookie.net/berserk/images/6/64/E224-Berserker_Armor-Manga-_%D0%91%D1%80%D0%BE%D0%BD%D1%8F-%D0%91%D0%B5%D1%80%D1%81%D0%B5%D1%80%D0%BA%D0%B0.png/revision/latest?cb=20180204114031&path-prefix=ru',
-        //         followed: false,
-        //         fullName: 'Dmitry',
-        //         status: 'I am a boss',
-        //         location: {city: 'Minsk', country: 'Belarus'}
-        //     },
-        //     {
-        //         id: 2,
-        //         photoUrl: 'https://vignette.wikia.nocookie.net/berserk/images/6/64/E224-Berserker_Armor-Manga-_%D0%91%D1%80%D0%BE%D0%BD%D1%8F-%D0%91%D0%B5%D1%80%D1%81%D0%B5%D1%80%D0%BA%D0%B0.png/revision/latest?cb=20180204114031&path-prefix=ru',
-        //         followed: true,
-        //         fullName: 'Sasha',
-        //         status: 'I am a boss too',
-        //         location: {city: 'Moscow', country: 'Russia'}
-        //     },
-        //     {
-        //         id: 3,
-        //         photoUrl: 'https://vignette.wikia.nocookie.net/berserk/images/6/64/E224-Berserker_Armor-Manga-_%D0%91%D1%80%D0%BE%D0%BD%D1%8F-%D0%91%D0%B5%D1%80%D1%81%D0%B5%D1%80%D0%BA%D0%B0.png/revision/latest?cb=20180204114031&path-prefix=ru',
-        //         followed: false,
-        //         fullName: 'Andrew',
-        //         status: 'I am a boss too',
-        //         location: {city: 'Kiev', country: 'Ukraine'}
-        //     }]);
-    }
-
-    
     return (
         <div className={s.users}>
             {
@@ -53,7 +29,7 @@ export const Users = (props) => {
                             </div>
                             <div className={s.aboutUserContainer}>
                                 <div className={s.userDescriptionContainer}>
-                                    <span className={s.userName}>{item.name}</span>
+                                    <span className={s.userName}>{item.name }</span>
                                     <span className={s.userStatus}>{item.status}</span>
                                 </div>
                                 <div className={s.locationContainer}>
