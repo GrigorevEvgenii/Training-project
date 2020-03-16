@@ -27,9 +27,12 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case SET_USERS: {
+            debugger;
             return {
                 ...state,
                 users: action.users,
+                totalCount: action.totalCount,
+                currentPage: action.currentPage,
             }
         }
         default: return state;
@@ -44,9 +47,11 @@ export const unfollowActionCreator = (userId) => ({
     type: UNFOLLOW,
     userId 
 })
-export const setUsersActionCreator = (users) => ({
+export const setUsersActionCreator = (users, totalCount, currentPage) => ({
     type: SET_USERS,
-    users 
+    users,
+    totalCount,
+    currentPage,
 })
 
 export default usersReducer;
