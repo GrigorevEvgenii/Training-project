@@ -2,6 +2,8 @@ import {cloneDeep} from "lodash";
 
 const ADD_POST = "ADD_POST";
 const NEW_TEXT = "NEW_TEXT";
+const TOGGLE_FETCHING = "TOGGLE_FETCHING";
+const SET_PROFILE = "SET_PROFILE";
 
 const initialState = {
     posts: [{
@@ -25,7 +27,9 @@ const initialState = {
             likesCount: 11
         }
     ],
-    currentText: "Some text"
+    profile: null,
+    currentText: "Some text",
+    isFetching: true,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -47,6 +51,16 @@ const profileReducer = (state = initialState, action) => {
             debugger;   
             return newState;
         }
+        case SET_PROFILE: {
+            debugger;
+            return {...state, profile: action.profile}
+        }
+        case TOGGLE_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        }
         default: {
             return state;
         }
@@ -63,6 +77,20 @@ export const newTextActionCreator = (text) => {
     return {
         type: NEW_TEXT,
         text: text,
+    }
+}
+
+export const setProfile = (profile) => {
+    return {
+        type: SET_PROFILE,
+        profile,
+    }
+}
+
+export const toggleFetching = (isFetching) => {
+    return {
+        type: TOGGLE_FETCHING,
+        isFetching,
     }
 }
 

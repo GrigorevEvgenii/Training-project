@@ -6,7 +6,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
   return (
     <div className={s.Profile}>
-      <ProfileInfo description="some text" url="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg" />
+      <ProfileInfo profile={props.profile} />
         <div>
           <MyPostsContainer />
         </div>
