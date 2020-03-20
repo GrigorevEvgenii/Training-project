@@ -4,6 +4,8 @@ import defaultAvatar from "../../img/user.png";
 import { NavLink } from "react-router-dom";
 
 export let Users = (props) => {
+    debugger;
+    console.log(props);
     return (
         <div className={s.users}>
                <div className={s.pageButtons}>
