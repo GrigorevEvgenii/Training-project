@@ -18,6 +18,9 @@ export let usersAPI = {
        return instanceOfAxios.get(`profile/${userID}`);
     },
 
+    getHeader() {
+        return instanceOfAxios.get(`auth/me`);
+    },
 
     unFollowUser(userID) {
         return instanceOfAxios.delete(`follow/${userID}`);

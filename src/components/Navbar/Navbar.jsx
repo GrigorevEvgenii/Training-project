@@ -12,7 +12,7 @@ const Navbar = () => {
                 <NavLink to="/Dialogs">Messages</NavLink>
             </div>
             <div className={s.navItem}>
-                <a href="/Users">Users</a>
+                <NavLink to="/Users">Users</NavLink>
             </div>
             <div className={s.navItem}>
                 <a href="#">News</a>

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {getUserProfile} from '../../Redux/profileReducer';
 import Preloader from '../../Preloader';
 import {withRouter} from 'react-router-dom';
-import {usersAPI} from '../../api/api.js';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
