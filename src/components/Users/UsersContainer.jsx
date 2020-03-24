@@ -1,52 +1,27 @@
-import React, { Fragment } from 'react';
+ import React, { Fragment } from 'react';
 import {Users} from './Users';
 import {connect} from 'react-redux';
-import {follow, unfollow, setUsers, toggleFetching, setCurrentPage} from '../../Redux/usersReducer';
-import * as axios from 'axios';
+import {getUsers, PageButtonClick, arrowPageButtonClick, followUser, unFollowUser} from '../../Redux/usersReducer';
 import s from './Users.module.css';
 import Preloader from '../../Preloader';
 
 export class UsersContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items, response.data.totalCount);
-            this.props.setCurrentPage(1);
-            this.props.toggleFetching(false);
-        });
+        this.props.getUsers(1, this.props.pageSize);
     }
 
     handlePageButtonClick = (item, pageSize) => {
-        this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${item}&count=${pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items, response.data.totalCount);
-            this.props.setCurrentPage(item);
-            this.props.toggleFetching(false);
-        });
+        this.props.PageButtonClick(item, pageSize)
     }
 
     handlePreviousPageClick = (currentPage, pageSize) => {
-        this.props.toggleFetching(true);
         currentPage--;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items, response.data.totalCount);
-            this.props.setCurrentPage(currentPage);
-            this.props.toggleFetching(false);
-        });
+        this.props.arrowPageButtonClick(currentPage, pageSize);
     }
 
     handleNextPageClick = (currentPage, pageSize) => {
-        this.props.toggleFetching(true);
         currentPage++;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items, response.data.totalCount);
-            this.props.setCurrentPage(currentPage);
-            this.props.toggleFetching(false);
-            debugger;
-        });
+        this.props.arrowPageButtonClick(currentPage, pageSize);
     }
 
     render() {
@@ -67,15 +42,13 @@ export class UsersContainer extends React.Component {
             <Fragment>
                 { this.props.isFetching ? <Preloader /> : null}
                 <Users handlePreviousPageClick={this.handlePreviousPageClick} handleNextPageClick={this.handleNextPageClick} 
-                handleFollow={this.props.follow} handleUnfollow={this.props.unfollow} 
+                handleFollow={this.props.followUser} handleUnfollow={this.props.unFollowUser}
                 pageButtons={pageButtons} users={this.props.users}
                 currentPage={this.props.currentPage} />
             </Fragment>
         );
     }
 }
-
-
 
 const mapStateToProps = (state) => {
     return {
@@ -87,14 +60,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-
 const UsersContainerAPI = connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    toggleFetching,
-    setCurrentPage,
+    getUsers,
+    PageButtonClick,
+    arrowPageButtonClick,
+    followUser,
+    unFollowUser,
 })(UsersContainer);
 
 export default UsersContainerAPI;

@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -81,4 +83,48 @@ export const setCurrentPage = (currentPage) => ({
     type: SET_CURRENT_PAGE,
     currentPage,
 });
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+            dispatch(setUsers(response.data.items, response.data.totalCount));
+            dispatch(setCurrentPage(1));
+            dispatch(toggleFetching(false));
+        });
+}
+
+export const PageButtonClick = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+            dispatch(setUsers(response.data.items, response.data.totalCount));
+            dispatch(setCurrentPage(currentPage));
+            dispatch(toggleFetching(false));
+        })
+}
+
+export const arrowPageButtonClick = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+            dispatch(setUsers(response.data.items, response.data.totalCount));
+            dispatch(setCurrentPage(currentPage));
+            dispatch(toggleFetching(false));
+        });
+}
+
+export const followUser = (userID) => (dispatch) => {
+    usersAPI.followUser(userID)
+        .then(response => {
+            dispatch(follow(userID));
+        })
+}
+
+export const unFollowUser = (userID) => (dispatch) => {
+    usersAPI.unFollowUser(userID)
+        .then(response => {
+            dispatch(unfollow(userID));
+        });
+}
+
 export default usersReducer;

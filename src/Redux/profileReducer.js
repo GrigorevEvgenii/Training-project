@@ -1,4 +1,5 @@
 import {cloneDeep} from "lodash";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD_POST";
 const NEW_TEXT = "NEW_TEXT";
@@ -92,6 +93,14 @@ export const toggleFetching = (isFetching) => {
         type: TOGGLE_FETCHING,
         isFetching,
     }
+}
+
+export const getUserProfile = (userID) => (dispatch) => {
+    usersAPI.getProfile(userID)
+        .then(response => {
+            dispatch(setProfile(response.data));
+            dispatch(toggleFetching(false));
+        });
 }
 
 export default profileReducer;
